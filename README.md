@@ -1,7 +1,7 @@
-# petition crawler
-a web crawler for gathering the names of all signers of the petition at [saveourtown.net](https://saveourtown.net)
+# Dispatch Scraper
+A web scraping tool for downloading dispatch calls from [eDispatches.com].
 
-created by Carter Pape of The Times-Independent
+created by [Carter Pape](https://carterpape.com) of [The Times-Independent](https://moabtimes.com)
 
 ## license
   
@@ -9,6 +9,6 @@ This program is free software: you can redistribute it and/or modify it under th
  
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  
-You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along with this program (check for file LICENSE). If not, see <https://www.gnu.org/licenses/>.
 
-Copyright (C) 2020 Carter Pape
+Copyright © 2020 Carter Pape
