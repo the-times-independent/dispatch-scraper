@@ -7,9 +7,9 @@
 
 import logging
 import sys
-from .requester                 import Requester
-from .response_handler          import ResponseHandler
-from .internet_file_persister   import InternetFilePersister
+from dispatch_scraper.requester                 import Requester
+from dispatch_scraper.response_handler          import ResponseHandler
+from dispatch_scraper.internet_file_persister   import InternetFilePersister
 
 class DispatchScraper:
     LOGGING_LEVEL = "INFO"
@@ -18,12 +18,10 @@ class DispatchScraper:
         self, *,
         dispatch_directory_path: str,
     ):
-        self._logger = logging.Logger(
-            f"logger for {self}",
-            level = DispatchScraper.LOGGING_LEVEL,
-        )
+        default_logger = logging.getLogger()
+        default_logger.setLevel(DispatchScraper.LOGGING_LEVEL)
         
-        self._logger.addHandler(
+        default_logger.addHandler(
             logging.StreamHandler(stream = sys.stdout),
         )
         
@@ -33,7 +31,6 @@ class DispatchScraper:
             relative_url_prefix     = "https://www.edispatches.com",
         )
         self._requester         = Requester(
-            logger                  = self._logger,
             response_handler        = self._response_handler,
             internet_file_persister = self._internet_file_persister
         )

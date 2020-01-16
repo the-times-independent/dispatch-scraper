@@ -8,10 +8,8 @@
 import requests
 import logging
 import lxml.html
-from pape.utilities import ordinal
-from ..response_handler import ResponseHandler
-from .proxy_rotator import ProxyRotator
-from ..internet_file_persister import InternetFilePersister
+from dispatch_scraper.response_handler import ResponseHandler
+from dispatch_scraper.internet_file_persister import InternetFilePersister
 
 class Requester:
     _DISPATCH_CALL_LOG_URL          = "https://www.edispatches.com/call-log/index.php"
@@ -29,14 +27,12 @@ class Requester:
     REQUEST_TIMEOUT_IN_SECONDS      = 10
     
     def __init__(self, *,
-        logger: logging.Logger,
         response_handler: ResponseHandler,
         internet_file_persister: InternetFilePersister,
     ):
         self._consecutive_failures_threshold    = Requester.CONSECUTIVE_FAILURES_THRESHOLD
         self._request_timeout_in_seconds        = Requester.REQUEST_TIMEOUT_IN_SECONDS
         
-        self._logger                    = logger
         self._response_handler          = response_handler
         self._internet_file_persister   = internet_file_persister
         
@@ -47,9 +43,6 @@ class Requester:
         self._request_headers       = {
             "User-Agent": Requester._DISPATCH_SCRAPER_USER_AGENT,
         }
-        self._proxy_rotator     = ProxyRotator(
-            logger = self._logger,
-        )
     
     def get_then_process_call_log(self):
         self._request_page()
@@ -59,7 +52,7 @@ class Requester:
         self._internet_file_persister.save_files_from_relative_urls(relative_urls)
     
     def _request_page(self):
-        self._logger.info("sending request")
+        logging.info("requesting call log list for Grand County")
         self._response = requests.post(
             self._petition_url,
             headers = self._request_headers,
