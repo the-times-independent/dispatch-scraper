@@ -8,6 +8,7 @@
 import requests
 import logging
 import lxml.html
+import typing
 from dispatch_scraper.response_handler import ResponseHandler
 from dispatch_scraper.internet_file_persister import InternetFilePersister
 
@@ -61,3 +62,6 @@ class Requester:
         )
         
         self._response.raise_for_status()
+    
+    def get_paths_of_new_dispatches(self) -> typing.List[str]:
+        return self._internet_file_persister.get_paths_of_saved_files()

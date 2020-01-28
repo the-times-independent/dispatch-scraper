@@ -62,3 +62,4 @@ scraper = DispatchScraper(
 )
 
 scraper.run()
+logging.info("new dispatches:\n" + str(scraper.get_paths_of_new_dispatches()))
