@@ -40,4 +40,4 @@ class DispatchScraper:
         self._requester.get_then_process_call_log()
     
     def get_paths_of_new_dispatches(self) -> typing.List[str]:
-        return self._requester.get_paths_of_new_dispatches()
+        return self._internet_file_persister.get_paths_of_saved_files()
